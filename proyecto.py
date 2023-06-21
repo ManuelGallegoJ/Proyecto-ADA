@@ -53,8 +53,8 @@ def dijstra(grafo, nodo_inicial):
 #}
 
 # Importancia que se le da al tiempo y al costo
-peso_tiempo = int(input("Ingrese el peso que va a tener el tiempo [0, 1]: "))     # Valor en el rango de [0, 1]
-peso_costo = int(input("Ingrese el peso que va a tener el costo [0, 1]: "))      # Valor en el rango de [0, 1]
+peso_tiempo = float(input("Ingrese el peso que va a tener el tiempo [0, 1]: "))     # Valor en el rango de [0, 1]
+peso_costo = float(input("Ingrese el peso que va a tener el costo [0, 1]: "))      # Valor en el rango de [0, 1]
 grafo = {}
 
 while True:
