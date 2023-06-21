@@ -1,10 +1,10 @@
+import heapq
+
 def dijstra(grafo, nodo_inicial):
     # En este caso se utilizará set() porque tiene un O(1) promedio para:
     # agregar add()
     # eliminar remove() o discard()
     # buscar elementos in
-    # Variable en la que almacenan los nodos analizados
-    nodos_visitados = set()
     # Variable en la que se almacenan los nodos que no se han analizado
     nodos_no_visitados = set(i for i in grafo)
     # Variable que va a almacenar la información de las rutas, al inicio no sabemos nada, por eo los inf
@@ -16,30 +16,29 @@ def dijstra(grafo, nodo_inicial):
     tiempo_acumulado = 0
     costo_acumulado = 0
     valor_acumulado = 0
-    # Recorrer
-    for i in range(len(nodos_no_visitados)):
-        # Recorro los vecinos del nodo actual
-        for j in grafo[nodo_actual]:
-            # Comparo si el valor actual es menor que el de la tabla
-            if grafo[nodo_actual][j][2] < tabla[j][0][2] and j in nodos_no_visitados:
-                tiempo_acumulado = tabla[nodo_actual][0][0] + grafo[nodo_actual][j][0]
-                costo_acumulado = tabla[nodo_actual][0][1] + grafo[nodo_actual][j][1]
-                valor_acumulado = tabla[nodo_actual][0][2] + grafo[nodo_actual][j][2]
-                # Comparo si el valor acumulado es menor que el de la tabla
-                if valor_acumulado < tabla[j][0][2]:
-                    tabla[j] = [[tiempo_acumulado, costo_acumulado, valor_acumulado], nodo_actual]
-
-        nodos_no_visitados.remove(nodo_actual)
-        nodos_visitados.add(nodo_actual)
-        # Debo buscar en tabla el nodo no visitado con el valor más pequeño     
-        # Esto sir ve para seleccionar al siguiente nodo
-        menor = float("inf")
-        nodo_menor = ""
-        for k in nodos_no_visitados:
-            if menor > tabla[k][0][2]:
-                menor = tabla[k][0][2]
-                nodo_menor = k
-        nodo_actual = nodo_menor
+    # Cola de prioridad para almacenar los nodos no visitados
+    cola_prioridad = [(0, nodo_inicial)]
+    heapq.heapify(cola_prioridad)
+    
+    while cola_prioridad:
+        # Extrae el nodo de menor valor acumulado de la cola de prioridad
+        _, nodo_actual = heapq.heappop(cola_prioridad)  
+        # Verifica que el nodo no haya sido visitado antes
+        if nodo_actual in nodos_no_visitados:  
+            # Marca el nodo actual como visitado
+            nodos_no_visitados.remove(nodo_actual)
+            # Explora los vecinos del nodo actual
+            for j in grafo[nodo_actual]: 
+                # Compara el valor acumulado actual con el valor en la tabla
+                if grafo[nodo_actual][j][2] < tabla[j][0][2]:  
+                    tiempo_acumulado = tabla[nodo_actual][0][0] + grafo[nodo_actual][j][0]
+                    costo_acumulado = tabla[nodo_actual][0][1] + grafo[nodo_actual][j][1]
+                    valor_acumulado = tabla[nodo_actual][0][2] + grafo[nodo_actual][j][2]
+                    # Actualiza la tabla si el nuevo valor acumulado es menor
+                    if valor_acumulado < tabla[j][0][2]:  
+                        tabla[j] = [[tiempo_acumulado, costo_acumulado, valor_acumulado], nodo_actual]
+                        # Agrega el nodo a la cola de prioridad
+                        heapq.heappush(cola_prioridad, (valor_acumulado, j))  
     return tabla
 
 # Ejemplo de uso:
@@ -72,6 +71,7 @@ while True:
     costo_de = int(caso[3])
     valor_calculado = tiempo_de*peso_tiempo + costo_de*peso_costo
     # Se ve si el nodo existe, en caso de no existir lo crea
+
     if actual in grafo:
         # Se ve si la conexión no existe para crearla, si existe compara y deja la que tenga un valor_calculado menor 
         if not(va_a in grafo[actual]):
