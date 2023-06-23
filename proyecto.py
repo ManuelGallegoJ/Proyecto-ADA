@@ -72,16 +72,20 @@ while True:
     valor_calculado = tiempo_de*peso_tiempo + costo_de*peso_costo
     # Se ve si el nodo existe, en caso de no existir lo crea
 
-    if actual in grafo:
-        # Se ve si la conexión no existe para crearla, si existe compara y deja la que tenga un valor_calculado menor 
-        if not(va_a in grafo[actual]):
-            grafo[actual][va_a] = tiempo_de, costo_de, valor_calculado
-        # Reemplazo si tiene un valor menor
-        elif valor_calculado < grafo[actual][va_a][2]:
-            grafo[actual][va_a] = tiempo_de, costo_de, valor_calculado
-    else:
-        grafo_auxiliar = {va_a: (tiempo_de, costo_de, valor_calculado)}
-        grafo[actual] = grafo_auxiliar
+    for _ in range(2):
+        if actual in grafo:
+            # Se ve si la conexión no existe para crearla, si existe compara y deja la que tenga un valor_calculado menor 
+            if not(va_a in grafo[actual]):
+                grafo[actual][va_a] = tiempo_de, costo_de, valor_calculado
+            # Reemplazo si tiene un valor menor
+            elif valor_calculado < grafo[actual][va_a][2]:
+                grafo[actual][va_a] = tiempo_de, costo_de, valor_calculado
+        else:
+            grafo_auxiliar = {va_a: (tiempo_de, costo_de, valor_calculado)}
+            grafo[actual] = grafo_auxiliar
+        actual = caso[1]
+        va_a = caso[0]
+
 
 #Nodo de partida
 nodo_inicial = input("Ingrese el punto de partida: ")
