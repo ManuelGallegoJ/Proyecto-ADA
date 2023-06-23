@@ -25,9 +25,9 @@ Nodo_inicio Nodo_fin Tiempo_de_viaje Costo_peaje
 
 ### Ejemplo
 
-<div align="center">
-![Ejemplo de grafo.](https://raw.githubusercontent.com/ManuelGallegoJ/Proyecto-ADA/main/assets/ejemplo-png.png)
-</div>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/ManuelGallegoJ/Proyecto-ADA/main/assets/ejemplo-png.png" alt="Ejemplo de grafo">
+</p>
 
 Así, para este ejemplo, el grafo se ingresaría así: 
 
