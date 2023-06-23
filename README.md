@@ -18,13 +18,17 @@ Los inputs contastan de 4 elementos:
 - Costo peaje
 
 Cada arista se ingresa por línea y cada uno de esos elementos está separado por un espacio, así:
+
 <div align="center">
 Nodo_inicio Nodo_fin Tiempo_de_viaje Costo_peaje   
 </div>
+
 ### Ejemplo
+
 <div align="center">
 ![Ejemplo de grafo.](https://raw.githubusercontent.com/ManuelGallegoJ/Proyecto-ADA/main/assets/ejemplo-png.png)
 </div>
+
 Así, para este ejemplo, el grafo se ingresaría así: 
 
 G H 18 0  
