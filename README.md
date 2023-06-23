@@ -19,15 +19,14 @@ Los inputs contastan de 4 elementos:
 
 Cada arista se ingresa por línea y cada uno de esos elementos está separado por un espacio, así:
 
----    
 Nodo_inicio Nodo_fin Tiempo_de_viaje Costo_peaje   
----
+
 ### Ejemplo
 ![Ejemplo de grafo.](https://raw.githubusercontent.com/ManuelGallegoJ/Proyecto-ADA/main/assets/ejemplo-png.png)
 
 Así, para este ejemplo, el grafo se ingresaría así: 
 
-G H 18 0 
+G H 18 0\n
 G E 15 0 
 G D 12 6000 
 H I 6 0 
