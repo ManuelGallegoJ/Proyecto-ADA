@@ -1,6 +1,6 @@
 import heapq
 
-def dijstra(grafo, nodo_inicial):
+def dijkstra(grafo, nodo_inicial):
     # En este caso se utilizará set() porque tiene un O(1) promedio para:
     # agregar add()
     # eliminar remove() o discard()
@@ -92,7 +92,7 @@ nodo_inicial = input("Ingrese el punto de partida: ")
 #Nodo destino
 destino = input("Ingrese el punto de destino: ")
 aux_destino = destino
-camino = dijstra(grafo, nodo_inicial)
+camino = dijkstra(grafo, nodo_inicial)
 ruta = ""
 
 while True:
